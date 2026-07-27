@@ -1,0 +1,21 @@
+{
+  "repo": "ground",
+  "feeds": [
+    {
+      "source": "https://ground.news/about",
+      "feed_url": "https://ground.news/about",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://ground.news/blog",
+      "feed_url": "https://ground.news/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-07-25T15:00:33Z"
+}

@@ -1,7 +1,13 @@
 aid: ground
 name: Ground
-description: Ground is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Ground News is a news aggregation platform, built by Snapwise Inc. and backed by Techstars,
+  that helps readers see every side of every story. It gathers coverage of each news event from across
+  the political spectrum and pairs every story with media bias ratings, factuality assessments, and
+  source-ownership transparency. Signature features include the Blindspot Feed that surfaces stories
+  disproportionately covered by the left or right, a per-story bias-distribution bar, local news
+  customization, daily briefing newsletters, browser extensions, and iOS/Android apps. Ground News does
+  not currently publish a public developer API, developer portal, or API documentation; this profile
+  captures the company's public web surface and domain-security posture.
 url: https://raw.githubusercontent.com/api-evangelist/ground/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,11 +15,30 @@ x-backed-by:
 - techstars
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
+image: https://groundnews.b-cdn.net/assets/logo4/GN_Square.png
 tags:
 - Company
+- News
+- Media
+- Media Bias
+- News Aggregation
+- Journalism
+- Media Monitoring
+- Consumer Apps
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +48,26 @@ maintainers:
 common:
 - type: Website
   url: https://ground.news/
+- type: About
+  url: https://ground.news/about
+- type: Blog
+  url: https://ground.news/blog
+- type: BlogRSS
+  url: https://ground.news/blog/rss
+- type: Careers
+  url: https://ground.news/careers
+- type: Pricing
+  url: https://ground.news/subscribe
+- type: SignUp
+  url: https://ground.news/login
+- type: TermsOfService
+  url: https://ground.news/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://ground.news/privacy-policy
+- type: DomainSecurity
+  url: security/ground-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
