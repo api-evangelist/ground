@@ -6,8 +6,11 @@ description: Ground News is a news aggregation platform, built by Snapwise Inc. 
   source-ownership transparency. Signature features include the Blindspot Feed that surfaces stories
   disproportionately covered by the left or right, a per-story bias-distribution bar, local news
   customization, daily briefing newsletters, browser extensions, and iOS/Android apps. Ground News does
-  not currently publish a public developer API, developer portal, or API documentation; this profile
-  captures the company's public web surface and domain-security posture.
+  not currently publish a public developer API, developer portal, or API documentation, and its one live
+  machine surface, api.ground.news, is the private backend of its own apps. The single integration point
+  it does publish is an unauthenticated embeddable iframe story widget. This profile captures that widget,
+  the company's public web and commercial surface, the contract-discovery probe record, and its
+  domain-security posture.
 url: https://raw.githubusercontent.com/api-evangelist/ground/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -28,7 +31,7 @@ accessModel:
   method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-13'
 image: https://groundnews.b-cdn.net/assets/logo4/GN_Square.png
 tags:
 - Company
@@ -64,10 +67,73 @@ common:
   url: https://ground.news/terms-and-conditions
 - type: PrivacyPolicy
   url: https://ground.news/privacy-policy
+- type: Support
+  url: https://ground.news/contact-us
+- type: HelpCenter
+  url: https://help.ground.news
+- type: FAQ
+  url: https://ground.news/frequently-asked-questions
+- type: Newsletter
+  url: https://ground.news/newsletters/daily-ground
+- type: iOSApp
+  url: https://apps.apple.com/app/apple-store/id1324203419
+- type: AndroidApp
+  url: https://play.google.com/store/apps/details?id=com.checkitt
 - type: DomainSecurity
   url: security/ground-domain-security.yml
+- type: Components
+  url: components/ground-components.yml
+- type: Plans
+  url: plans/ground-plans-pricing.yml
+- type: Packages
+  url: packages/ground-packages.yml
+- type: LLMsTxt
+  url: llms/ground-llms.txt
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: minimal
+  artifacts_added: 6
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Full STEP 0b contract discovery re-run across ground.news, api.ground.news,
+    about.ground.news and help.ground.news. No published contract of any kind. NO
+    WellKnown, SecurityTxt, RateLimits or SDKs pointer is emitted: every well-known
+    path 404s, no rate-limit header exists on any callable surface, and no client
+    library exists in any registry — those probe files are retained as evidence of
+    absence, not advertised as served surfaces. One real find: Ground News publishes an
+    embeddable iframe story widget at ground.news/widget/story, captured in components/.
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Ground News ships only a consumer news app: its single live machine surface,
+    api.ground.news, is the private Express backend of that app and answers HTTP 418
+    "I'm a Teapot" to every path including the root, while developer., developers.,
+    docs., status. and trust.ground.news do not resolve at all and every well-known,
+    OpenAPI and agent-card path on the four hosts it does serve returns 404 — the only
+    third-party integration point it publishes is a single unauthenticated iframe story
+    widget.
+  evidence:
+  - url: https://api.ground.news/openapi.json
+    status: 418
+  - url: https://api.ground.news/
+    status: 418
+  - url: https://ground.news/openapi.json
+    status: 404
+  - url: https://ground.news/graphql
+    status: 404
+  - url: https://ground.news/.well-known/agent-card.json
+    status: 404
+  - url: https://ground.news/.well-known/agent.json
+    status: 404
+  - url: https://ground.news/llms.txt
+    status: 404
+  - url: https://about.ground.news/.well-known/security.txt
+    status: 404
+  - url: https://help.ground.news/openapi.json
+    status: 404
+  - url: https://api.github.com/orgs/groundnews
+    status: 404
+  - url: https://ground.news/widget/story?offset=1
+    status: 200
+  checked: '2026-08-13'
