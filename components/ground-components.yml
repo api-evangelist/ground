@@ -1,0 +1,89 @@
+generated: '2026-08-13'
+method: searched
+source: https://about.ground.news/widget
+name: Ground News embeddable components
+description: >-
+  Ground News publishes no SDK, CLI or API, but it does publish one genuine
+  client-side embeddable surface: an iframe story widget, documented by example on
+  its own about.ground.news/widget page. This is the single integration point a third
+  party can legitimately place on their own site today. It is an iframe embed, not a
+  JavaScript component library — there is no loader script, no npm package and no
+  configuration API beyond a query string. Ground News does not document it in prose
+  anywhere; the page simply renders three live copies of the embed, so the embed code
+  below is transcribed verbatim from that page's source.
+component_count: 1
+loader_libraries: []
+families:
+- family: Story widget
+  description: >-
+    A self-contained, server-rendered card showing the current Ground News top story:
+    the headline, the story image, the number of sources covering it, and the
+    left/center/right coverage-distribution bar that is Ground News' signature
+    visualisation. Rendered by Next.js on the ground.news origin and embedded
+    cross-site by iframe.
+  components:
+  - name: story
+    type: iframe-embed
+    url: https://ground.news/widget/story
+    embed_code: '<iframe width=500 height=600 src="https://ground.news/widget/story?offset=1"></iframe>'
+    embed_source: https://about.ground.news/widget
+    auth: none
+    parameters:
+    - name: offset
+      in: query
+      type: integer
+      required: false
+      description: >-
+        Selects which story from the current top-stories ordering to render. The
+        provider's own published embed uses offset=1. Verified behavioural difference:
+        offset=1 and offset=3 return different stories. No range, default or error
+        behaviour is documented by the provider.
+      published_example: '1'
+    recommended_size:
+      width: 500
+      height: 600
+      note: Taken from the provider's own embed code; no responsive guidance is published.
+    x-evidence:
+      fetched: '2026-08-13'
+      url: https://ground.news/widget/story?offset=1
+      http_status: 200
+      content_type: text/html; charset=utf-8
+      observed: >-
+        Server-rendered HTML. The rendered card carried "Left 31% / Center 63% /
+        R 6%" over the headline "Kennedy Center board reapproves Trump's plan to close
+        for renovations". The page's Next.js __NEXT_DATA__ payload exposes the same
+        story as structured JSON — id, slug, title, image, sourceCount, start,
+        leftPercent, centerPercent, rightPercent. That payload is embedded page state,
+        NOT a documented API: Ground News publishes no contract for it, no versioning,
+        no terms of use for it and no support commitment, so it must not be treated as
+        an integration point.
+    caveats:
+    - No documented rate limit, SLA, versioning or deprecation policy for the embed.
+    - >-
+      Sets first-party cookies on the embedding page context (GN_SESSION_ID and an
+      A/B-test cookie), and loads Google Tag Manager, so it carries analytics into the
+      host page. Relevant to any embedder with a consent obligation.
+    - >-
+      Only one component exists. There is no comment, feed, source-profile, blindspot
+      or search embed; /widget and /widget/blindspot both 404.
+not_components:
+  note: >-
+    The following are first-party Ground News distributions but are end-user
+    applications, NOT developer components, and are deliberately recorded here rather
+    than in packages/ or components[] so they cannot be mistaken for an SDK surface.
+  items:
+  - name: Ground News for iOS
+    url: https://apps.apple.com/app/apple-store/id1324203419
+    kind: mobile-app
+  - name: Ground News for Android
+    url: https://play.google.com/store/apps/details?id=com.checkitt
+    kind: mobile-app
+  - name: Ground News Bias Checker (Chrome)
+    url: https://chrome.google.com/webstore/detail/ground-news-bias-checker/agleiimpggapjekcdhdjbmegjbbkleie
+    kind: browser-extension
+  - name: Ground News Bias Checker (Firefox)
+    url: https://addons.mozilla.org/en-US/firefox/addon/ground-news-bias-checker/
+    kind: browser-extension
+  - name: Ground News Bias Checker (Edge)
+    url: https://microsoftedge.microsoft.com/addons/detail/ground-news-bias-checke/cfnmjcnjieklbbicccoabdpjclifkpnk
+    kind: browser-extension

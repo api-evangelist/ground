@@ -1,0 +1,86 @@
+generated: '2026-08-13'
+method: searched
+source: https://ground.news/subscribe
+name: Ground News plans and pricing
+description: >-
+  Ground News sells a consumer news subscription, not API access. These are the tiers a
+  reader can buy on the public pricing page; none of them includes, meters or mentions
+  an API, and there is no developer or data plan of any kind. Recorded here so the
+  commercial surface is captured honestly — api_access_included is false on every tier.
+  The page currently renders a single-plan variant: its own page state declares
+  availablePlans ["vantage"] under the feature flag "vantage-only-plan", so the
+  historical multi-tier layout is being A/B-tested away and only Vantage is offered to
+  an anonymous visitor from this probe's location. A free, no-account reading tier
+  exists in practice — the site, the top-stories feed and the widget all render without
+  login — but it is not itemised or priced on the page, so it is recorded as
+  unpriced rather than assigned a price it does not publish.
+product: Ground News subscription
+currency: USD
+plan_count: 2
+metering: none
+free_tier: true
+api_access_included: false
+api_plans: 0
+pricing_variant: vantage-only-plan
+plans:
+- name: Free
+  price: 0
+  currency: USD
+  period: null
+  billing: none
+  listed_on_pricing_page: false
+  included: >-
+    Reading the ground.news site, top stories, interest pages and the embeddable story
+    widget without an account. Not itemised by the provider; recorded from observed
+    anonymous access, not from a published feature list.
+  quota: null
+  overage: null
+  api_quota: null
+  api_access: false
+- name: Vantage
+  price: 8.33
+  price_verbatim: '$8.33/month (billed annually)'
+  currency: USD
+  period: month
+  billing: annual
+  listed_on_pricing_page: true
+  included:
+  - Blindspot analysis
+  - Global coverage map
+  - Unlimited saved stories
+  - Full coverage comparison
+  - Ownership & funding transparency
+  - Bias & factuality ratings
+  - My News Bias dashboard
+  quota: unlimited
+  overage: null
+  api_quota: null
+  api_access: false
+  terms_note: 'Page states "Cancel anytime. No hidden fees."'
+other_commercial_surfaces:
+- name: Group subscriptions
+  url: https://ground.news/group-subscriptions
+  pricing: not published
+  note: Contact-form gate; no price, seat count or quota is published.
+- name: Gift subscriptions
+  url: https://ground.news/gift
+  pricing: not published
+- name: Affiliate program
+  url: https://ground.news/affiliates
+  pricing: not applicable
+  note: Referral revenue share for creators, not a data or API commercial surface.
+- name: Ground Education
+  url: https://about.ground.news/contact-ground-ed
+  pricing: not published
+  note: >-
+    Institutional/classroom program behind a contact form. The nearest thing to a
+    data-licensing motion Ground News publishes, and it is a sales gate with no
+    published terms.
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://ground.news/subscribe
+  http_status: 200
+  note: >-
+    Price and feature list transcribed verbatim from the rendered pricing card;
+    availablePlans and the pricing feature-flag key read from the page's own
+    server-rendered state.

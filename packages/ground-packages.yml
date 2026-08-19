@@ -1,0 +1,79 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, rubygems.org, api.github.com — probed 2026-08-13
+name: Ground News client libraries and packages
+description: >-
+  Ground News publishes no first-party client library in any package registry, and has
+  no GitHub organisation. This follows directly from having no public API: there is no
+  contract for an SDK to wrap. official_count and package_count are both honest zeros,
+  and NO SDKs pointer is emitted in apis.yml — an SDKs pointer would assert client
+  libraries that do not exist. Ground News does ship first-party software (iOS and
+  Android apps, and a bias-checker browser extension for Chrome, Firefox and Edge), but
+  those are end-user applications distributed through app stores, not developer
+  packages; they are recorded in components/ground-components.yml under not_components
+  so they cannot be miscounted as an SDK surface.
+official_count: 0
+package_count: 0
+packages: []
+registries_probed:
+- registry: npm
+  query: groundnews
+  url: https://registry.npmjs.org/-/v1/search?text=groundnews
+  status: 200
+  result: 0 results. No package named groundnews and no @groundnews scope.
+- registry: npm
+  query: ground-news
+  url: https://registry.npmjs.org/-/v1/search?text=ground-news
+  status: 200
+  result: >-
+    Matches are generic keyword noise (nan, bullmq, togeojson, sumnews). No Ground News
+    package and no Ground News publisher.
+- registry: pypi
+  query: groundnews
+  url: https://pypi.org/pypi/groundnews/json
+  status: 404
+- registry: pypi
+  query: ground-news
+  url: https://pypi.org/pypi/ground-news/json
+  status: 404
+- registry: rubygems
+  query: groundnews
+  url: https://rubygems.org/api/v1/gems/groundnews.json
+  status: 404
+- registry: maven-central
+  result: not probed individually; no JVM SDK is referenced anywhere on the Ground News site.
+- registry: nuget
+  result: not probed individually; no .NET SDK is referenced anywhere on the Ground News site.
+- registry: crates.io
+  result: not probed individually; no Rust SDK is referenced anywhere on the Ground News site.
+- registry: packagist
+  result: not probed individually; no PHP SDK is referenced anywhere on the Ground News site.
+source_control:
+- org: groundnews
+  url: https://api.github.com/orgs/groundnews
+  status: 404
+- org: ground-news
+  url: https://api.github.com/orgs/ground-news
+  status: 404
+- org: snapwise-inc
+  url: https://api.github.com/orgs/snapwise-inc
+  status: 404
+- org: snapWise
+  url: https://api.github.com/orgs/snapwise
+  status: 200
+  rejected: true
+  rejection_reason: >-
+    OWNERSHIP CHECK FAILED — name collision only. github.com/snapWise is an
+    organisation named "Berrinex", located in Austria, contact zohaib.ali@berrinex.com,
+    created 2026-02-15, with zero public repositories. Ground News is built by Snapwise
+    Inc. of Kitchener, Ontario, Canada. Different company; deliberately NOT recorded as
+    Ground News' GitHub organisation and no GitHubOrganization pointer is emitted.
+third_party_surfaces:
+  note: >-
+    Recorded as market context, not as a Ground News artifact. Because Ground News
+    publishes no API, third parties resort to scraping it — an Apify actor
+    ("Ground News Bias, Coverage & Sources Scraper") sells scraped Ground News bias and
+    coverage data, and several AI-generated content-farm pages claim a "Ground News API"
+    with sign-up instructions that do not correspond to anything Ground News publishes.
+    None of these is first-party and none is recorded as a Ground News package.

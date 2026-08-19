@@ -1,0 +1,95 @@
+# Ground News
+
+> Ground News is a news aggregation and media-comparison platform built by Snapwise Inc.
+> of Kitchener, Ontario, Canada, and backed by Techstars. It gathers coverage of each
+> news event from across the political spectrum and pairs every story with media bias
+> ratings, factuality assessments and source-ownership transparency. Its signature
+> surfaces are the Blindspot Feed (stories disproportionately covered by one side), the
+> per-story left/center/right coverage-distribution bar, a My News Bias dashboard,
+> local news, daily briefing newsletters, browser extensions and iOS/Android apps.
+> Bias ratings are described by Ground News as the average of three independent
+> monitors — AllSides, Ad Fontes Media and Media Bias/Fact Check — combined with its
+> own human and machine analysis.
+
+## Status — no public API
+
+- Ground News publishes **no public API**. Re-probed 2026-08-13 under full contract
+  discovery: no developer portal, no API reference, no OpenAPI or Swagger, no GraphQL
+  schema, no AsyncAPI, no webhook catalog, no SDK in any package registry, no CLI, no
+  Postman collection, no MCP server, no agent card, and no sandbox.
+- Probed and missed on ground.news: `/openapi.json`, `/swagger.json`, `/api-docs`,
+  `/graphql`, `/api`, `/developers`, `/llms.txt` and every `/.well-known/` path
+  (`security.txt`, `openid-configuration`, `oauth-authorization-server`, `api-catalog`,
+  `ai-plugin.json`, `agent-card.json`, and the legacy `agent.json`) — all 404.
+- The subdomains a developer would try do not exist: `developer.`, `developers.`,
+  `docs.`, `status.`, `trust.` and `web-api.ground.news` are all NXDOMAIN, and there is
+  no `api.groundnews.com`.
+- There **is** one live machine surface, and it is not for you: `api.ground.news`
+  resolves and runs an Express origin behind CloudFront, backing the Ground News web
+  and mobile apps. It answers **HTTP 418 "I'm a Teapot" to every path**, including the
+  root. Nothing about it is published — no reference, no key issuance, no terms. It is
+  the app's private backend. Do not treat it as an integration point.
+- There is **no Ground News GitHub organisation**. `github.com/snapWise` exists but is
+  an unrelated Austrian organisation named Berrinex with zero repositories — a name
+  collision, not Ground News.
+- No first-party client library exists on npm, PyPI or RubyGems.
+- Because there is no API, third parties scrape Ground News instead (a commercial Apify
+  actor sells scraped Ground News bias and coverage data), and several AI-generated
+  content-farm pages describe a "Ground News API" with sign-up steps that correspond to
+  nothing Ground News publishes. Treat any such claim as unverified.
+
+## The one real integration surface: the story widget
+
+Ground News publishes exactly one embeddable component, documented by example on its
+own site at https://about.ground.news/widget:
+
+```html
+<iframe width=500 height=600 src="https://ground.news/widget/story?offset=1"></iframe>
+```
+
+- Server-rendered card showing the current top story: headline, image, source count and
+  the left/center/right coverage-distribution bar.
+- `offset` (query, integer) selects which story in the current ordering to render. The
+  provider's own embed uses `offset=1`; `offset=3` returns a different story. No range,
+  default or error behaviour is documented.
+- No authentication. No rate limits, SLA, versioning or deprecation policy are
+  published for it.
+- It sets first-party cookies and loads Google Tag Manager into the embedding page —
+  relevant to any embedder with a consent obligation.
+- Only this one embed exists; `/widget` and `/widget/blindspot` both 404.
+
+## Commercial
+
+- Consumer subscription only. The public pricing page currently renders a single tier,
+  **Vantage at $8.33/month billed annually**, including Blindspot analysis, the global
+  coverage map, unlimited saved stories, full coverage comparison, ownership & funding
+  transparency, bias & factuality ratings and the My News Bias dashboard.
+- A free, no-account reading tier exists in practice but is not itemised or priced.
+- **No plan includes API access**, and no data or developer plan is published. Group
+  subscriptions, gifting, the affiliate program and Ground Education all sit behind
+  contact forms with no published terms.
+
+## Where to go instead of an API
+
+- Blog RSS: https://ground.news/blog/rss
+- Newsletters: /newsletters/daily-ground, /newsletters/blindspot-report,
+  /newsletters/burst-your-bubble
+- Rating methodology: https://ground.news/rating-system
+- Help centre: https://help.ground.news
+- Contact: feedback@ground.news · privacy@ground.news · +1 (866) 471-9181 ·
+  Snapwise Inc., 280 Joseph St, Kitchener, ON, Canada N2G 4Z5
+- Institutional/classroom access (the closest thing to a data-licensing motion, and it
+  is a sales gate): https://about.ground.news/contact-ground-ed
+
+## Crawling policy
+
+`https://ground.news/robots.txt` allows all agents on `/` except `/mediaopoly`, blocks
+YandexBot, Yandex, AhrefsBot, Yeti and all image crawlers, and **explicitly allows
+GPTBot**. `/sitemap.xml` returns 403.
+
+## Profile
+
+- API Evangelist profile: https://apis.io/provider/ground
+- Source: https://raw.githubusercontent.com/api-evangelist/ground/refs/heads/main/apis.yml
+- Generated by the API Evangelist enrichment pipeline, 2026-08-13. Not published by
+  Ground News.

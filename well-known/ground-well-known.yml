@@ -1,0 +1,223 @@
+generated: '2026-08-13'
+method: probed
+source: https://ground.news
+name: Ground News well-known and contract-discovery probe
+description: >-
+  Full STEP 0b contract-discovery probe of every Ground News host: the consumer web
+  application (ground.news), the private application backend (api.ground.news), the
+  Squarespace marketing/legal site (about.ground.news) and the help centre
+  (help.ground.news). Standard /.well-known/ discovery paths, both agent-card paths,
+  every common OpenAPI/Swagger location, /llms.txt and /graphql were probed. No path
+  returned a document on any host. Absence is recorded as valid data. No raw files were
+  saved, and NO WellKnown and NO SecurityTxt pointer is emitted in apis.yml, because a
+  probe that records a 404 on every path must not be scored as a served surface.
+served_documents: 0
+hosts:
+- host: ground.news
+  note: >-
+    Next.js consumer application. Returns a real 404 (its own styled SPA 404 page) for
+    every discovery path — not a soft-200 catch-all, so these are genuine misses.
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+  - path: /openapi.json
+    status: 404
+    file: null
+  - path: /swagger.json
+    status: 404
+    file: null
+  - path: /api-docs
+    status: 404
+    file: null
+  - path: /graphql
+    status: 404
+    file: null
+  - path: /api
+    status: 404
+    file: null
+  - path: /developers
+    status: 404
+    file: null
+  - path: /robots.txt
+    status: 200
+    file: null
+    note: >-
+      Served, but not a discovery document. Allows all agents on / except /mediaopoly,
+      blocks YandexBot, Yandex, AhrefsBot, Yeti and all image crawlers, and explicitly
+      ALLOWS GPTBot. No API, sitemap-of-specs or developer path is referenced.
+  - path: /sitemap.xml
+    status: 403
+    file: null
+- host: api.ground.news
+  note: >-
+    Resolves (13.33.67.121) and is live behind CloudFront with an Express origin
+    (x-powered-by: Express). It is the private backend of the Ground News web and mobile
+    apps, not a developer API. EVERY path — including the site root — answers
+    HTTP 418 "I'm a Teapot", a deliberate blanket rejection of unrecognised callers.
+    Nothing is published about it: no reference, no terms, no key issuance, no docs host.
+  paths:
+  - path: /
+    status: 418
+    file: null
+  - path: /openapi.json
+    status: 418
+    file: null
+  - path: /openapi.yaml
+    status: 418
+    file: null
+  - path: /swagger.json
+    status: 418
+    file: null
+  - path: /v1/openapi.json
+    status: 418
+    file: null
+  - path: /api-docs
+    status: 418
+    file: null
+  - path: /docs
+    status: 418
+    file: null
+  - path: /redoc
+    status: 418
+    file: null
+  - path: /graphql
+    status: 418
+    file: null
+  - path: /.well-known/security.txt
+    status: 418
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 418
+    file: null
+  - path: /.well-known/agent.json
+    status: 418
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 418
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 418
+    file: null
+  - path: /.well-known/api-catalog
+    status: 418
+    file: null
+  - path: /llms.txt
+    status: 418
+    file: null
+- host: about.ground.news
+  note: >-
+    Squarespace-hosted marketing, legal and support site. Canonical home of the terms,
+    privacy policy and the embeddable story widget. /.well-known/security.txt returns a
+    Squarespace JSON 404 body; every other /.well-known/ path returns the Squarespace
+    HTML 404 page.
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+  - path: /robots.txt
+    status: 200
+    file: null
+    note: Stock Squarespace robots.txt.
+  - path: /sitemap.xml
+    status: 200
+    file: null
+    note: >-
+      29 URLs, all marketing, legal, support-form, shop and campaign pages. One is a
+      developer-adjacent surface — /widget, the embeddable story widget, captured in
+      components/ground-components.yml. No developer, API or docs page exists.
+- host: help.ground.news
+  note: >-
+    Hosted help centre. Serves a permissive robots.txt and no discovery documents. Its
+    index contains zero occurrences of the word "API".
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+  - path: /openapi.json
+    status: 404
+    file: null
+  - path: /robots.txt
+    status: 200
+    file: null
+subdomains_probed:
+- host: web-api.ground.news
+  dns: NXDOMAIN
+- host: developer.ground.news
+  dns: NXDOMAIN
+- host: developers.ground.news
+  dns: NXDOMAIN
+- host: docs.ground.news
+  dns: NXDOMAIN
+- host: status.ground.news
+  dns: NXDOMAIN
+- host: trust.ground.news
+  dns: NXDOMAIN
+- host: api.groundnews.com
+  dns: NXDOMAIN
+contract_discovery:
+  openapi: none
+  swagger: none
+  graphql: none
+  asyncapi: none
+  grpc: none
+  mcp: none
+  agent_card: none
+  postman: none
+  conclusion: >-
+    No machine-readable contract is published by Ground News on any host. The only live
+    machine surface on a Ground News domain is api.ground.news, the app's private
+    backend, which rejects every unrecognised request with HTTP 418.
+x-evidence:
+  fetched: '2026-08-13'
+  hosts_probed: 4
+  paths_probed: 46
+  documents_found: 0

@@ -1,0 +1,42 @@
+generated: '2026-08-13'
+method: probed
+source: https://ground.news/widget/story?offset=1
+name: Ground News rate limits
+description: >-
+  Ground News publishes no rate limits, because it publishes no API. limit_count is an
+  honest zero. NO RateLimits pointer is emitted in apis.yml for this file: emitting one
+  would assert a runtime rate-limit signal an agent could rely on, and there is none.
+  The file exists as the probe record. The only unauthenticated first-party surface that
+  can be called at all is the embeddable story widget, and its responses carry no
+  rate-limit headers of any kind. The private application backend at api.ground.news
+  does not answer unrecognised callers well enough to observe limits — it returns
+  HTTP 418 to every request, including the site root.
+limit_count: 0
+documented: false
+docs: null
+limits: []
+observed_headers: []
+standard_headers:
+  ratelimit_draft: false
+  x_ratelimit: false
+  retry_after: not observed
+exhaustion_status: not observed
+surfaces_probed:
+- url: https://ground.news/widget/story?offset=1
+  http_status: 200
+  rate_limit_headers: none
+  note: >-
+    Response headers are Cache-Control private/no-store, ETag, CloudFront cache
+    metadata, session cookies and the standard security trio (X-XSS-Protection,
+    Referrer-Policy, X-Content-Type-Options). No RateLimit-*, X-RateLimit-* or
+    Retry-After header is present.
+- url: https://api.ground.news/
+  http_status: 418
+  rate_limit_headers: none
+  note: >-
+    Blanket "I'm a Teapot" rejection on every path. Not a rate-limit response and not a
+    documented surface.
+x-evidence:
+  fetched: '2026-08-13'
+  surfaces: 2
+  headers_found: 0
