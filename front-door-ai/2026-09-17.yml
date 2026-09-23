@@ -1,0 +1,29 @@
+# Front Door AI Index — ground — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: ground
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: ground.news
+  final_host: ground.news
+  ownership: own
+  owner: ground
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 20
+  host_score: 20
+  density: 8.94
+  words: 2237
+  tiers:
+    agentic: 0
+    core: 10
+    model: 10
+  ambiguous: 1
+  top_terms:
+    AI: 9
+    Claude: 8
+    Anthropic: 2
+    artificial intelligence: 1
+    intelligence: 1
